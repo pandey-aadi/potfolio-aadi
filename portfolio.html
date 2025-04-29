@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Aadi Pandey | Cloud & Software Developer </title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #3a3f43; /* GitHub dark gray */
+      --secondary: #586069; /* GitHub medium gray */
+      --accent: #0366d6; /* GitHub blue */
+      --accent-light: #f6f8fa; /* GitHub light gray */
+      --border-color: #e1e4e8; /* GitHub border color */
+      --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+      --transition: all 0.2s ease-in-out;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.5;
+      color: var(--primary);
+      background-color: #fafbfc;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 296px 1fr;
+      gap: 32px;
+      min-height: 100vh;
+    }
+
+    /* Profile Sidebar - GitHub style */
+    .profile-sidebar {
+      position: sticky;
+      top: 32px;
+      align-self: start;
+    }
+
+    .profile-img-wrapper {
+      width: 100%;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 16px;
+      border: 1px solid var(--border-color);
+    }
+
+    .profile-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-text h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .profile-text p {
+      font-size: 1rem;
+      color: var(--secondary);
+      margin-bottom: 16px;
+    }
+
+    .contact-info {
+      margin-bottom: 20px;
+    }
+
+    .contact-info p {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--secondary);
+      margin-bottom: 8px;
+    }
+
+    .contact-info i {
+      width: 16px;
+      text-align: center;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      color: var(--secondary);
+      border-radius: 50%;
+      font-size: 1rem;
+      transition: var(--transition);
+      border: 1px solid var(--border-color);
+    }
+
+    .social-links a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background-color: var(--accent-light);
+    }
+
+    .skills-highlight {
+      margin-top: 20px;
+    }
+
+    .skills-highlight h3 {
+      font-size: 1rem;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .skill-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-badge {
+      background-color: var(--accent-light);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid var(--border-color);
+    }
+
+    /* Main Content - GitHub style */
+    .main-content {
+      background-color: white;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border-color);
+      background-color: white;
+      padding: 0 16px;
+    }
+
+    .nav-tab {
+      padding: 16px 40px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--secondary);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: var(--transition);
+      margin-bottom: -1px;
+      transition: 0.2s linear all
+      
+    }
+
+    .nav-tab:hover {
+      transform:scale(1.05);
+      color: var(--primary);
+      background-color: #838d97;
+      color:white;
+      
+    }
+
+    .nav-tab.active {
+      color: var(--accent);
+      border-bottom-color: #fd8c73; /* GitHub orange */
+      font-weight: 600;
+    }
+
+    /* Tab Content */
+    .tab-content {
+      padding: 24px;
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* About Section (default visible) */
+    #about {
+      display: block;
+      padding: 24px;
+    }
+
+    .about-text p {
+      margin-bottom: 16px;
+      color: var(--secondary);
+    }
+
+    .expertise-list {
+      list-style-position: inside;
+      margin-bottom: 16px;
+      color: var(--secondary);
+    }
+
+    .expertise-list li {
+      margin-bottom: 8px;
+    }
+
+    /* Projects Section */
+    .projects-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.project-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 320px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-thumbnail img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.project-info {
+  padding: 15px;
+}
+
+.project-tech {
+  margin-top: 10px;
+}
+
+.tech-tag {
+  display: inline-block;
+  background: #eee;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 12px;
+  margin: 2px;
+}
+
+.project-links {
+  margin-top: 15px;
+}
+
+.project-link {
+  text-decoration: none;
+  margin-right: 10px;
+  color: #007bff;
+  font-weight: bold;
+}
+
+
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .skill-category {
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 16px;
+    }
+
+    .skill-category h4 {
+      font-size: 1rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-category i {
+      color: var(--accent);
+    }
+
+    .skill-items {
+      list-style-type: none;
+    }
+
+    .skill-items li {
+      font-size: 0.9rem;
+      color: var(--secondary);
+      margin-bottom: 8px;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .skill-items li::before {
+      content: "•";
+      color: var(--accent);
+      position: absolute;
+      left: 0;
+    }
+
+    /* Contact Section */
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .contact-info h3 {
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+
+    .contact-info p {
+      font-size: 0.9rem;
+      color: var(--secondary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .contact-form h3 {
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .submit-btn:hover {
+      background-color: #035fc7;
+    }
+
+    /* GitHub-like stats section */
+    .profile-stats {
+      display: flex;
+      gap: 16px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.9rem;
+    }
+
+    .stat-number {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .stat-label {
+      color: var(--secondary);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .container {
+        grid-template-columns: 1fr;
+        padding: 16px;
+      }
+
+      .profile-sidebar {
+        position: static;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .profile-img-wrapper {
+        width: 120px;
+        height: 120px;
+      }
+
+      .contact-content {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+    @media (max-width: 768px) {
+      .nav-tabs {
+        flex-wrap: wrap;
+      }
+
+      .nav-tab {
+        flex: 1;
+        text-align: center;
+        padding: 12px;
+        font-size: 0.8rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+.skill-category{
+  background-color: #bedbf9;
+  transition: 0.2s linear all;
+}
+.skill-category:hover{
+  
+transform: scale(1.05);
+background-color: rgb(195, 152, 152);
+color: #e1e4e8;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Profile Sidebar (Left) -->
+    <aside class="profile-sidebar">
+      <div class="profile-img-wrapper">
+        <img src="AADI.jpeg" alt="Vansh Srivastava" class="profile-img">
+      </div>
+      <div class="profile-text">
+        <h1>Aadi Pandey</h1>
+        <p>Software Developer</p>
+      </div>
+      
+      <div class="contact-info">
+        <p><i class="fas fa-phone"></i> 7017582024</p>
+        <p><i class="fas fa-envelope"></i> aadipandey307@gmail.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> Dehradun, Uttarakhand</p>
+      </div>
+      
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/aadi-pandey-425a79322/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/pandey-aadi" target="_blank"><i class="fab fa-github"></i></a>
+      </div>
+      
+      <div class="skills-highlight">
+        <h3>Top Skills</h3>
+        <div class="skill-badges">
+          <span class="skill-badge">Java</span>
+          <span class="skill-badge">Python</span>
+          <span class="skill-badge">JavaScript</span>
+          <span class="skill-badge">React</span>
+          <span class="skill-badge">Spring Boot</span>
+          <span class="skill-badge">AWS</span>
+          <span class="skill-badge">Docker</span>
+        </div>
+      </div>
+
+      <!-- GitHub-like stats -->
+      <div class="profile-stats">
+        <div class="stat-item">
+          <span class="stat-number">10+</span>
+          <span class="stat-label">Projects</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">5</span>
+          <span class="stat-label">Skills</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">3+</span>
+          <span class="stat-label">Years</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content (Right) -->
+    <main class="main-content">
+      <!-- Navigation Tabs -->
+      <div class="nav-tabs">
+        <div class="nav-tab active" data-tab="about">Overview</div>
+        <div class="nav-tab" data-tab="projects">Projects</div>
+        <div class="nav-tab" data-tab="skills">Skills</div>
+        <div class="nav-tab" data-tab="contact">Contact</div>
+      </div>
+
+      <!-- About Section (default visible like GitHub overview) -->
+      <section id="about">
+        <div class="about-text">
+          <h2 class="section-title">About</h2>
+          <p>A highly motivated and results-oriented software developer with a strong foundation in backend development, frontend development, and cloud technologies. I am passionate about crafting clean, efficient, and scalable solutions that address real-world challenges.</p>
+          
+          <p>My experience includes working with Java, Python, JavaScript, React, Spring Boot, and AWS. I possess a solid understanding of software development life cycles, agile methodologies, and best practices in coding and testing.</p>
+          
+          <p>I am a proactive problem-solver with a keen eye for detail and a commitment to continuous learning and improvement. I thrive in collaborative team environments and am adept at communicating technical concepts effectively to both technical and non-technical stakeholders.</p>
+          
+          <h3 style="margin-top: 24px; margin-bottom: 12px; font-size: 1.2rem;">Technical Proficiencies</h3>
+          <ul class="expertise-list">
+            <li>Proficient in Java and object-oriented design principles</li>
+            <li>Experienced with developing RESTful APIs using Spring Boot</li>
+            <li>Good understanding of frontend development with React and modern JavaScript</li>
+            <li>Familiar with cloud platforms such as AWS, including services like EC2, S3, and RDS</li>
+            <li>Comfortable with version control systems like Git and collaborative workflows</li>
+          </ul>
+        </div>
+      </section>
+
+<!-- Projects Tab Content -->
+<div class="tab-content" id="projects">
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+    
+    <!-- Project 1 -->
+    <div class="project-card">
+      <div class="project-thumbnail">
+        <img src="docker.jpeg" alt="Docker" width="300" height="200">
+      </div>
+      <div class="project-info">
+        <h3>Docker Experiments</h3>
+        <p class="project-description">
+          A collection of Docker experiments demonstrating proficiency in containerization and orchestration.
+        </p>
+        <div class="project-tech">
+          <span class="tech-tag">Docker</span>
+          <span class="tech-tag">Containerization</span>
+          <span class="tech-tag">DevOps</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/pandey-aadi/dockerexperiments" class="project-link code" target="_blank">
+            <i class="fab fa-github"></i> View Code
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card">
+      <div class="project-thumbnail">
+        <img src="weather.png" alt="Weather Forecast App">
+      </div>
+      <div class="project-info">
+        <h3>Weather Forecast App</h3>
+        <p class="project-description">
+          A simple and interactive weather forecast app built with Streamlit, providing real-time weather updates and insights.
+        </p>
+        <div class="project-tech">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Streamlit</span>
+          <span class="tech-tag">Data Visualization</span>
+        </div>
+        <div class="project-links">
+          <a href="https://app-weather-app-dk4kxecyf838kohbe2wqpk.streamlit.app/" class="project-link live" target="_blank">
+            <i class="fas fa-external-link-alt"></i> Live Demo
+          </a>
+          <a href="https://github.com/pandey-aadi/streamlit-weather-app" class="project-link code" target="_blank">
+            <i class="fab fa-github"></i> View Code
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-card">
+      <div class="project-thumbnail">
+        <img src="titanic.png" alt="Titanic Survival Prediction">
+      </div>
+      <div class="project-info">
+        <h3>Titanic Survival Prediction</h3>
+        <p class="project-description">
+          Built a machine learning model to predict Titanic passenger survival using Python and scikit-learn.
+        </p>
+        <div class="project-tech">
+          <span class="tech-tag">Machine Learning</span>
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Scikit-learn</span>
+        </div>
+        <div class="project-links">
+          <a href="https://app-titanic-enpung6fpfusuvtzhbzxry.streamlit.app/" class="project-link live" target="_blank">
+            <i class="fas fa-external-link-alt"></i> Live Demo
+          </a>
+          <a href="https://github.com/pandey-aadi/streamlit-titanic" class="project-link code" target="_blank">
+            <i class="fab fa-github"></i> View Code
+          </a>
+        </div>
+      </div>
+    </div>
+
+  <!-- Project 4 -->
+  <div class="project-card">
+    <div class="project-thumbnail">
+      <img src="houseprd.jpg" alt="House Price Prediction">
+    </div>
+    <div class="project-info">
+      <h3>House Price Prediction</h3>
+      <p class="project-description">
+        Built a machine learning model to predict House Price using Python and scikit-learn.
+      </p>
+      <div class="project-tech">
+        <span class="tech-tag">Machine Learning</span> 
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Scikit-learn</span>
+      </div>
+      <div class="project-links">
+        <a href="https://syq2oehbqwnxufqx2tcnph.streamlit.app/" class="project-link live" target="_blank">
+          <i class="fas fa-external-link-alt"></i> Live Demo
+        </a>
+        <a href="https://github.com/pandey-aadi/streamlit-house-price-" class="project-link code" target="_blank">
+          <i class="fab fa-github"></i> View Code
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  </div>
+</div>
+
+      <!-- Skills Tab Content -->
+      <div class="tab-content" id="skills">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h4><i class="fas fa-code"></i> Programming</h4>
+            <ul class="skill-items">
+              <li>Java</li>
+              <li>Python</li>
+              <li>JavaScript</li>
+              <li>C/C++</li>
+            </ul>
+          </div>
+          
+          <div class="skill-category">
+            <h4><i class="fas fa-laptop-code"></i> Web Development</h4>
+            <ul class="skill-items">
+              <li>HTML/CSS</li>
+              <li>React</li>
+              <li>Node.js</li>
+              <li>Express</li>
+            </ul>
+          </div>
+          
+          <div class="skill-category">
+            <h4><i class="fas fa-server"></i> Backend</h4>
+            <ul class="skill-items">
+              <li>Spring Boot</li>
+              <li>REST APIs</li>
+              <li>Microservices</li>
+              <li>GraphQL</li>
+            </ul>
+          </div>
+          
+          <div class="skill-category">
+            <h4><i class="fas fa-database"></i> Databases</h4>
+            <ul class="skill-items">
+              <li>MySQL</li>
+              <li>PostgreSQL</li>
+              <li>MongoDB</li>
+              <li>Redis</li>
+            </ul>
+          </div>
+          
+          <div class="skill-category">
+            <h4><i class="fab fa-aws"></i> Cloud & DevOps</h4>
+            <ul class="skill-items">
+              <li>AWS</li>
+              <li>Docker</li>
+              <li>Kubernetes</li>
+              <li>CI/CD</li>
+            </ul>
+          </div>
+          
+          <div class="skill-category">
+            <h4><i class="fas fa-tools"></i> Tools</h4>
+            <ul class="skill-items">
+              <li>Git</li>
+              <li>VS Code</li>
+              <li>IntelliJ</li>
+              <li>Postman</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Tab Content -->
+      <div class="tab-content" id="contact">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-content">
+          <div class="contact-info">
+            <h3>Get In Touch</h3>
+            <p>I am eager to connect and discuss potential opportunities. Feel free to reach out through the channels below.</p>
+            <p><i class="fas fa-envelope"></i><a href="aadipandey307@gmail.com" target="_blank">GMail</a></p>
+            <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/aadi-pandey-425a79322/" target="_blank">LinkedIn</a></p>
+            <p><i class="fab fa-github"></i> <a href="https://github.com/pandey-aadi" target="_blank">GitHub</a></p>
+          </div>
+          <div class="contact-form">
+            <h3>Send me a message</h3>
+            <form action="#" method="POST">
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" required></textarea>
+              </div>
+              <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Tab functionality
+    document.querySelectorAll('.nav-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Hide all tab contents and the about section
+        document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+        document.getElementById('about').style.display = 'none';
+        
+        // Remove active class from all tabs
+        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+        
+        // Add active class to clicked tab and show corresponding content
+        tab.classList.add('active');
+        const tabId = tab.getAttribute('data-tab');
+        if (tabId === 'about') {
+          document.getElementById('about').style.display = 'block';
+        } else {
+          document.getElementById(tabId).style.display = 'block';
+        }
+      });
+    });
+
+    // Simple form submission handler
+    const contactForm = document.querySelector('.contact-form form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you for your message! In a real implementation, this would send the form data to a server.');
+        contactForm.reset();
+      });
+    }
+  </script>
+</body>
+</html>
